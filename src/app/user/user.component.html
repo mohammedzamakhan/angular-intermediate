@@ -1,13 +1,21 @@
+<div class="container">
 <div class="mdc-card demo-card demo-card--with-avatar">
   <section class="mdc-card__primary">
     <img class="demo-card__avatar" [src]="user.avatar_url"/>
     <h1 class="mdc-card__title">{{user.name}}</h1>
     <h2 class="mdc-card__subtitle">{{user.login}}</h2>
+
   </section>
   <section class="mdc-card__supporting-text">
     {{user.bio}}
   </section>
+
   <section class="mdc-card__actions">
     <a href="{{user.html_url}}" target="_blank" class="mdc-button mdc-button--raised mdc-card__action">Link to profile</a>
   </section>
+
+</div>
+<section>
+    <gs-repos [username]="user.name" [repos]="user.repos"></gs-repos>
+</section>
 </div>

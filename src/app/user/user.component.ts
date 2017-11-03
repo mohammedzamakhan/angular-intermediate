@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ReposComponent } from '../repos/repos.component';
 
 @Component({
   selector: 'gs-user',
