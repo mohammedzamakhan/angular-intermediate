@@ -11,7 +11,7 @@ import 'rxjs/add/operator/do';
 import { Subject } from 'rxjs/Subject';
 
 
-import { filter, flatMap, startWith, debounceTime, switchMap, distinctUntilChanged, tap } from 'rxjs/operators';
+import { filter, flatMap, startWith, debounceTime, switchMap, distinctUntilChanged, tap, map } from 'rxjs/operators';
 
 
 import { FormControl, FormGroup, FormBuilder } from '@angular/forms';
@@ -30,16 +30,13 @@ export class SearchComponent implements OnInit {
   user: any = {};
   searchFieldControl = new FormControl();
   constructor(private githubService: GithubService, fb: FormBuilder) {
-   this.searchForm = fb.group({
-      searchField: [environment.user]
-    });
     this.terms$
       .pipe(
         startWith(environment.user),
         debounceTime(300),
-        // filter(x => !!x && x.length > 4),
         distinctUntilChanged(),
         tap(() => this.progressbaractive = true),
+        map(x =>  x = x.length > 0 ? x : environment.user),
         switchMap((username) => this.githubService
           .getUser(username)
           .switchMap((user: any) =>

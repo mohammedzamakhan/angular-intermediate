@@ -1,4 +1,4 @@
-<div class="container">
+<div *ngIf='user.name?.length > 0' class="container">
 <div class="mdc-card demo-card demo-card--with-avatar">
   <section class="mdc-card__primary">
     <img class="demo-card__avatar" [src]="user.avatar_url"/>
@@ -18,4 +18,8 @@
 <section>
     <gs-repos [username]="user.name" [repos]="user.repos"></gs-repos>
 </section>
+</div>
+
+<div [hidden]='!user.name?.length < 1'  class="container">
+  <h1 class="mdc-card__title">No such users found !!</h1>
 </div>
