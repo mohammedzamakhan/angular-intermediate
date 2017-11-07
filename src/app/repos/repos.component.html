@@ -1,0 +1,10 @@
+<div class="container">
+  <h3>{{username}}'s Repositories</h3>
+  <section class="mdc-theme--dark">
+      <ul class="mdc-list">
+          <li *ngFor="let repo of repos" class="mdc-list-item">
+              <i class="mdc-list-item__start-detail material-icons" aria-hidden="true">folder</i>
+              {{repo.name}}</li>
+        </ul>
+  </section>
+</div>

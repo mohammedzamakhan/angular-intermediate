@@ -5,6 +5,7 @@ import { HomeComponent } from './home/home.component';
 const routes: Routes = [
   { path: '', component: HomeComponent },
   { path: 'search', loadChildren: './search/search.module#SearchModule' },
+  { path: 'feedback', loadChildren: './feedback/feedback.module#FeedbackModule' },
 ];
 
 @NgModule({

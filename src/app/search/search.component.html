@@ -1,9 +1,21 @@
 <div class="container">
+    <div *ngIf='progressbaractive' role="progressbar" class="mdc-linear-progress mdc-linear-progress--indeterminate">
+        <div class="mdc-linear-progress__buffering-dots"></div>
+        <div class="mdc-linear-progress__buffer"></div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__primary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+        <div class="mdc-linear-progress__bar mdc-linear-progress__secondary-bar">
+          <span class="mdc-linear-progress__bar-inner"></span>
+        </div>
+      </div>
+
   <form name="search-form">
   <div class="mdc-form-field mdc-form-field--align-end">
     <div class="mdc-textfield username-field">
-      <input type="text" class="mdc-textfield__input" name="search" placeholder="Type Github User Name"
-        (input)="searchUser($event.target.value)">
+
+      <input type="text" class="mdc-textfield__input" name="search" placeholder="Type Github User Name" (input)="terms$.next($event.target.value)">
+
       <div class="mdc-textfield__bottom-line"></div>
     </div>
     <label for="css-only-textfield">username:</label>
