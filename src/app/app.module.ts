@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { GithubService } from './github.service';
 import { HighlightDirective } from './highlight.directive';
 import { SplitByPipe } from './split-by.pipe';
+import { SpeechService } from './speech.service';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,7 @@ import { SplitByPipe } from './split-by.pipe';
     HttpClientModule
   ],
 
-  providers: [GithubService],
+  providers: [GithubService, SpeechService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
