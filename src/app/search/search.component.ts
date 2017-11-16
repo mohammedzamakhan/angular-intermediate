@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { GithubService } from '../github.service';
 import { environment } from '../../environments/environment';
+import 'rxjs/add/operator/switchMap';
+import 'rxjs/add/operator/map';
 
 @Component({
   selector: 'gs-search',
@@ -17,6 +19,12 @@ export class SearchComponent implements OnInit {
   }
   searchUser(username) {
     this.githubService.getUser(username)
+    .switchMap((user: any) =>
+      this.githubService.getRepos(user.login).map(repos => ({
+        ...user,
+        repos
+      }))
+    )
     .subscribe(user => this.user = user);
   }
 

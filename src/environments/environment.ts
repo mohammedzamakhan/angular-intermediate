@@ -1,4 +1,3 @@
-import { GithubService } from "../app/github.service";
 
 // The file contents for the current environment will overwrite these during build.
 // The build system defaults to the dev environment which uses `environment.ts`, but if you do
@@ -11,5 +10,5 @@ export const environment = {
   clientId: '162b6220302bba24b794',
   clientSecret: 'b2859870711cdeda2419ae6662f378c65aa615c9',
   user: 'mohammedzamakhan',
-  logService: GithubService
+  slackUrl: 'https://hooks.slack.com/services/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'
 };

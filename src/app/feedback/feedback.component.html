@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="mdc-textfield mdc-textfield--textarea mdc-textfield--fullwidth">
+    <textarea id="textarea-css-only"
+      class="mdc-textfield__input"
+      rows="8"
+      cols="40"
+      [(ngModel)]="feedback"
+      placeholder="Enter your feedback about the application"></textarea>
+  </div>
+  <button class="mdc-button mdc-button--raised" (click)="sendFeedback()">
+    Send Feedback
+  </button>
+</div>
+
+<div *ngIf="sent">Feedback Sent!</div>

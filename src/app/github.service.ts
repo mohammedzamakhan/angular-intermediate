@@ -20,4 +20,14 @@ export class GithubService {
       }));
   }
 
+  getRepos(username): Observable<any> {
+    return this.http
+      .get(
+        `https://api.github.com/users/${username}/repos?client_id=${environment.clientId}&client_secret=${environment.clientSecret}`
+      )
+      .catch(() => Observable.of({
+        error: true,
+      }));
+  }
+
 }
