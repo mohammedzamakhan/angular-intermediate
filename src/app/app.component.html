@@ -13,6 +13,10 @@
 
 <router-outlet></router-outlet>
 
+<h1>{{time | date:'hh:mm:ss'}}</h1>
+
+<button class="mdc-button" (click)="click$.next()">Update Time</button>
+
 <button [routerLink]="['/feedback']" class="mdc-fab material-icons feedback" aria-label="Feedback">
   <span class="mdc-fab__icon">
     feedback

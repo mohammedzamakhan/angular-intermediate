@@ -3,7 +3,7 @@
   <div class="mdc-form-field mdc-form-field--align-end">
     <div class="mdc-textfield username-field">
       <input type="text" class="mdc-text-field__input" name="search" placeholder="Type Github User Name"
-      (input)="searchUser($event.target.value)">
+      (input)="text$.next($event.target.value)">
     <div class="mdc-textfield__bottom-line"></div>
     </div>
     <label for="css-only-textfield">username:</label>
