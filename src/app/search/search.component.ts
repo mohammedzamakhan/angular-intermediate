@@ -10,6 +10,8 @@ import { map } from 'rxjs/operators/map';
 import { switchMap, } from 'rxjs/operators/switchMap';
 import { distinctUntilChanged } from 'rxjs/operators/distinctUntilChanged';
 import { startWith } from 'rxjs/operators/startWith';
+import { SpeechService } from '../speech.service';
+import { Observable } from 'rxjs/Observable';
 
 
 @Component({
@@ -20,15 +22,18 @@ import { startWith } from 'rxjs/operators/startWith';
 export class SearchComponent implements OnInit {
   user: any = {};
   text$ = new Subject();
-  constructor(private githubService: GithubService) { }
+  dictateClick$ = new Subject();
+  spokenKeyword$ = this.dictateClick$.switchMap(() => this.speechService.listen());
+  constructor(private githubService: GithubService, private speechService: SpeechService) { }
 
   ngOnInit() {
-    // this.searchUser(environment.user);
-    this.text$
+    Observable.merge(
+      this.text$,
+      this.spokenKeyword$
+    )
     .pipe(
       startWith(environment.user),
       debounceTime(500),
-      filter((val: string) => val.length > 4),
       distinctUntilChanged(),
       switchMap((val) => this.githubService.getUser(val).switchMap((user: any) =>
           this.githubService.getRepos(user.login).map(repos => ({
@@ -38,15 +43,4 @@ export class SearchComponent implements OnInit {
     )
       .subscribe(user => this.user = user);
   }
-  // searchUser(username) {
-  //   this.githubService.getUser(username)
-  //   .switchMap((user: any) =>
-  //     this.githubService.getRepos(user.login).map(repos => ({
-  //       ...user,
-  //       repos
-  //     }))
-  //   )
-  //   .subscribe(user => this.user = user);
-  // }
-
 }
