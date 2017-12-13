@@ -8,6 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { GithubService } from './github.service';
 import { HighlightDirective } from './highlight.directive';
 import { SplitByPipe } from './split-by.pipe';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { SplitByPipe } from './split-by.pipe';
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    SharedModule,
   ],
 
   providers: [GithubService],

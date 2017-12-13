@@ -6,7 +6,10 @@
       </span>
     </section>
     <section class="mdc-toolbar__section mdc-toolbar__section--align-end">
-      <a [routerLink]="['/search']" class="material-icons search align-icons no-link" aria-label="Search" alt="Search">search</a>
+      <button class="mdc-button mdc-button--raised" (click)="openLoginModel()">
+        {{(loggedIn | async) ? 'Logout': 'Login'}}
+      </button>
+      <a *ngIf="loggedIn | async" [routerLink]="['/search']" class="material-icons search align-icons no-link" aria-label="Search" alt="Search">search</a>
     </section>
   </div>
 </header>
@@ -17,8 +20,43 @@
 
 <button class="mdc-button" (click)="click$.next()">Update Time</button>
 
-<button [routerLink]="['/feedback']" class="mdc-fab material-icons feedback" aria-label="Feedback">
+<button *ngIf="loggedIn | async" [routerLink]="['/feedback']" class="mdc-fab material-icons feedback" aria-label="Feedback">
   <span class="mdc-fab__icon">
     feedback
   </span>
 </button>
+
+<aside id="my-mdc-dialog" class="mdc-dialog mdc-dialog--open" [ngClass]="{'mdc-dialog--open': loginModelOpen}" role="alertdialog"
+  aria-labelledby="my-mdc-dialog-label" aria-describedby="my-mdc-dialog-description">
+  <div class="mdc-dialog__surface">
+    <header class="mdc-dialog__header">
+      <h2 id="my-mdc-dialog-label" class="mdc-dialog__header__title">
+        Login
+      </h2>
+    </header>
+    <section id="my-mdc-dialog-description" class="mdc-dialog__body">
+      <form name="search-form">
+        <div class="mdc-form-field mdc-form-field--align-end">
+          <div class="mdc-textfield username-field">
+            <input #username type="text" class="mdc-text-field__input" name="search" placeholder="User Name">
+            <div class="mdc-textfield__bottom-line"></div>
+          </div>
+          <label for="css-only-textfield">username:</label>
+        </div>
+
+        <div class="mdc-form-field mdc-form-field--align-end">
+          <div class="mdc-textfield username-field">
+            <input #password type="text" class="mdc-text-field__input" name="search" placeholder="Password">
+            <div class="mdc-textfield__bottom-line"></div>
+          </div>
+          <label for="css-only-textfield">password:</label>
+        </div>
+      </form>
+    </section>
+    <footer class="mdc-dialog__footer">
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--cancel" (click)="closeLoginModel()">Cancel</button>
+      <button type="button" class="mdc-button mdc-dialog__footer__button mdc-dialog__footer__button--accept" (click)="login(username, password)">Login</button>
+    </footer>
+  </div>
+  <div class="mdc-dialog__backdrop"></div>
+</aside>

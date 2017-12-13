@@ -1,9 +1,11 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+
 import { UserComponent } from '../user/user.component';
-import { SlackService } from './slack.service';
 import { ReposComponent } from './repos/repos.component';
+import { SlackService } from './slack.service';
+import { UserService } from './user.service';
 
 @NgModule({
   imports: [
@@ -17,7 +19,7 @@ import { ReposComponent } from './repos/repos.component';
     UserComponent,
     ReposComponent,
   ],
-  providers: [SlackService],
+  providers: [SlackService, UserService],
   declarations: [
     UserComponent,
     ReposComponent
